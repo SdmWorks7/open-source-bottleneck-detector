@@ -1,3 +1,9 @@
+# IMP: extract_memories() and get_memories() are deprecated as of the latest version
+# Memory extraction and retrieval is now handled by cognee_service.py using Cognee Cloud.
+# save_memories() is kept for potential fallback/backup purposes.
+# These functions may be removed in a future cleanup.
+
+
 import aiosqlite
 from app.database.db import DB_PATH
 
