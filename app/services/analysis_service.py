@@ -1,4 +1,4 @@
-from app.services.memory_service import get_memories
+from app.services.cognee_service import recall_memories
 from app.services.github_service import get_github_username, fetch_github_events
 from app.services.evidence_service import generate_evidence
 from app.services.bottleneck_service import rank_bottlenecks
@@ -6,7 +6,7 @@ from app.services.llm_service import generate_explanation
 from app.services.report_service import save_report
 
 async def run_analysis(user_id: int) -> dict:
-    memories = await get_memories(user_id)
+    memories = await recall_memories(user_id, "skills, weaknesses and goals")
     
     github_username = await get_github_username(user_id)
     if github_username:
