@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import chat, analyze, report, register
+from app.api import chat, analyze, report, register, github
 from app.database.db import init_db
 from contextlib import asynccontextmanager
 
@@ -14,6 +14,7 @@ app.include_router(chat.router)
 app.include_router(analyze.router)
 app.include_router(report.router)
 app.include_router(register.router)
+app.include_router(github.router)
 
 @app.get("/")
 def root():

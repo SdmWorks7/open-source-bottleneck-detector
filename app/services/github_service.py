@@ -17,3 +17,28 @@ async def fetch_github_events(username: str):
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
         return response.json()
+
+async def fetch_github_profile(username: str) -> dict:
+    url = f"https://api.github.com/users/{username}"
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+        return response.json()
+    
+def process_github_stats(events: list) -> dict:
+    push_count = 0
+    pr_count = 0
+    issue_count = 0
+
+    for event in events:
+        if event["type"] == "PushEvent":
+            push_count += 1
+        elif event["type"] == "PullRequestEvent":
+            pr_count += 1
+        elif event["type"] == "IssuesEvent":
+            issue_count += 1
+
+    return {
+        "recent_pushes": push_count,
+        "recent_prs": pr_count,
+        "recent_issues": issue_count
+    }
