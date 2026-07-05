@@ -953,15 +953,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     Step 01 — Your Profile
                 </div>
-                <div class="two-col">
-                    <div class="field">
-                        <label>User ID</label>
-                        <input type="number" id="chat-user-id" value="1">
-                    </div>
-                    <div class="field">
-                        <label>Describe your skills & struggles</label>
-                        <textarea id="chat-message" placeholder="e.g. I know Python but I struggle with Git and open source contributions..."></textarea>
-                    </div>
+                <div class="field">
+                    <label>Describe your skills & struggles</label>
+                    <textarea id="chat-message" placeholder="e.g. I know Python but I struggle with Git and open source contributions..."></textarea>
                 </div>
                 <button class="btn btn-gradient" onclick="submitChat()" id="chat-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -977,15 +971,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                     Step 02 — GitHub Account
                 </div>
-                <div class="two-col">
-                    <div class="field">
-                        <label>User ID</label>
-                        <input type="number" id="reg-user-id" value="1">
-                    </div>
-                    <div class="field">
-                        <label>GitHub Username</label>
-                        <input type="text" id="reg-username" placeholder="e.g. torvalds">
-                    </div>
+                <div class="field">
+                    <label>GitHub Username</label>
+                    <input type="text" id="reg-username" placeholder="e.g. torvalds">
                 </div>
                 <button class="btn btn-ghost" onclick="registerGitHub()" id="reg-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
@@ -1000,10 +988,6 @@
                 <div class="card-eyebrow eyebrow-blue">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     Step 03 — Run Analysis
-                </div>
-                <div class="field">
-                    <label>User ID</label>
-                    <input type="number" id="analyze-user-id" value="1" style="max-width:85px;">
                 </div>
                 <button class="btn-analyze" onclick="runAnalysis()" id="analyze-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -1066,6 +1050,7 @@
 
 <script>
     const API = 'http://127.0.0.1:8000';
+    const USER_ID = Math.floor(Math.random() * 9000) + 1;
 
     const CHECK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;flex-shrink:0"><polyline points="20 6 9 17 4 12"/></svg>`;
     const CROSS = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`;
@@ -1085,7 +1070,7 @@
     }
 
     async function submitChat() {
-        const userId = parseInt(document.getElementById('chat-user-id').value);
+        const userId = USER_ID;
         const message = document.getElementById('chat-message').value.trim();
         if (!message) return showStatus('chat-status', 'Please enter a message.', 'error');
         setLoading('chat-btn', 'chat-btn-text', 'chat-spinner', true);
@@ -1098,8 +1083,6 @@
             const data = await res.json();
             if (res.ok) {
                 showStatus('chat-status', `Message saved — ID #${data.message_id}`, 'success');
-                document.getElementById('reg-user-id').value = userId;
-                document.getElementById('analyze-user-id').value = userId;
             } else {
                 showStatus('chat-status', `Error: ${JSON.stringify(data.detail)}`, 'error');
             }
@@ -1108,7 +1091,7 @@
     }
 
     async function registerGitHub() {
-        const userId = parseInt(document.getElementById('reg-user-id').value);
+        const userId = USER_ID;
         const username = document.getElementById('reg-username').value.trim();
         if (!username) return showStatus('reg-status', 'Enter a GitHub username.', 'error');
         setLoading('reg-btn', 'reg-btn-text', 'reg-spinner', true);
@@ -1200,7 +1183,7 @@
     }
 
     async function runAnalysis() {
-        const userId = parseInt(document.getElementById('analyze-user-id').value);
+        const userId = USER_ID;
         setLoading('analyze-btn', 'analyze-btn-text', 'analyze-spinner', true);
         showStatus('analyze-status', 'Running analysis — this takes 15–30 seconds...', 'info');
         document.getElementById('analyze-status').classList.add('show');
@@ -1236,7 +1219,11 @@
                 <div class="sev-badge ${cls}">${sev}</div>
             </div>`;
         }).join('');
-        document.getElementById('explanation-text').textContent = data.explanation;
+        document.getElementById('explanation-text').innerHTML = data.explanation
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/`(.*?)`/g, '<code style="background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;font-size:12px;">$1</code>')
+            .replace(/\n/g, '<br>');
         document.getElementById('report-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 </script>
