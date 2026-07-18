@@ -1,9 +1,3 @@
-/* ============================================
-   Bottleneck Detector — Design Tokens
-   Palette: warm cream + espresso brown + brass
-   Type: Piazzolla (display) / Karla (body & UI)
-   ============================================ */
-
 :root {
     --cream: #f6f1e7;
     --cream-soft: #ece3d2;
@@ -38,7 +32,6 @@ body {
     display: flex;
 }
 
-/* ── Sidebar ── */
 .sidebar {
     width: var(--sidebar-w);
     background: transparent;
@@ -106,8 +99,6 @@ body {
     font-size: 12px;
     font-weight: 600;
 }
-
-/* ── Main ── */
 .main {
     margin-left: var(--sidebar-w);
     flex: 1;
@@ -122,7 +113,6 @@ body {
     max-width: 620px;
 }
 
-/* ── Hero ── */
 .hero {
     text-align: center;
     margin-bottom: 44px;
@@ -145,14 +135,12 @@ body {
     line-height: 1.6;
 }
 
-/* ── Flow ── */
 .flow {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* ── Composer (Step 1) ── */
 .composer {
     background: var(--white);
     border: 1px solid var(--line);
@@ -215,7 +203,6 @@ body {
     color: var(--text-light);
 }
 
-/* ── Generic small inputs ── */
 input[type="number"], input[type="text"] {
     background: var(--cream);
     border: 1px solid var(--line);
@@ -236,7 +223,6 @@ input:focus {
     box-shadow: 0 0 0 3px rgba(179, 130, 63, 0.12);
 }
 
-/* ── Buttons ── */
 .send-btn {
     width: 34px;
     height: 34px;
@@ -296,7 +282,6 @@ input:focus {
 .primary-btn:hover { background: var(--brass-dim); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(179, 130, 63, 0.22); }
 .primary-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
-/* ── Step 2: GitHub connect row ── */
 .row-panel {
     background: transparent;
     border: 1px solid var(--line);
@@ -322,7 +307,6 @@ input:focus {
 .row-panel-fields input[type="number"] { width: 76px; }
 .row-panel-fields input[type="text"] { flex: 1; min-width: 160px; }
 
-/* ── GitHub activity section ── */
 .gh-section {
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -413,7 +397,6 @@ input:focus {
 .bar-clay { background: #b3673f; }
 .bar-olive { background: #8a8c4f; }
 
-/* ── Step 3: Analyze ── */
 .analyze-panel {
     background: var(--brown);
     border-radius: var(--radius);
@@ -451,7 +434,6 @@ input:focus {
 
 .analyze-row .primary-btn { flex: 1; justify-content: center; }
 
-/* ── Status ── */
 .status {
     margin-top: 10px;
     padding: 9px 13px;
@@ -476,7 +458,6 @@ input:focus {
 .analyze-panel .status.error { background: rgba(180, 76, 60, 0.15); color: #d17364; }
 .analyze-panel .status.info { background: rgba(246, 241, 231, 0.08); color: rgba(246, 241, 231, 0.7); }
 
-/* ── Spinner ── */
 .spinner {
     width: 13px;
     height: 13px;
@@ -500,7 +481,6 @@ input:focus {
 .spinner.show { display: inline-block; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Step 4: Report ── */
 .report-section {
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -611,7 +591,6 @@ input:focus {
 
 .hidden { display: none !important; }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
     .sidebar { display: none; }
     .main { margin-left: 0; padding: 40px 16px 64px; }
