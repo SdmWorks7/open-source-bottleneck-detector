@@ -172,4 +172,3 @@ GET /report/{report_id}
 ## Author
 
 **Saumyadeep Mishra**
-WeMakeDevs × Cognee AI Hackathon 2026
